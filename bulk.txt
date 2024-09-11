@@ -1,0 +1,57 @@
+  async bulkUpload(file: Express.Multer.File){
+    console.log(file)
+    let data = await xlsx2json(file.path);
+    console.log("xlsx data------------",data)
+  }
+
+  
+
+  @Post('/bulk-upload')
+  @UseInterceptors(FileInterceptor('file'))
+  bulkUpload(@UploadedFile() file: Express.Multer.File){
+    const bulkAdd = this.resourceService.bulkUpload(file);
+    return Response.ok('Resources are created successfully',bulkAdd);
+  }
+
+
+  //new
+
+  
+  async bulkUpload(file: Express.Multer.File) {
+    const workbook = XLSX.readFile(file.path);
+    const sheetName = workbook.SheetNames[0]; 
+    const worksheet = workbook.Sheets[sheetName];
+
+    const jsonData = XLSX.utils.sheet_to_json(worksheet, { defval: null });
+
+    const filteredData:any = jsonData.filter(row => {
+      return Object.values(row).some(cell => cell !== null && cell !== undefined && cell !== '');
+    });
+   console.log(filteredData)
+    const result =await this.resourceModel.bulkCreate(filteredData);
+
+    console.log(result)
+    return result;
+  }
+
+
+    @Post('/bulk-upload')
+  @UseInterceptors(FileInterceptor('file'))
+  bulkUpload(@UploadedFile() file: Express.Multer.File){
+    const bulkAdd = this.resourceService.bulkUpload(file);
+    return Response.ok('Resources are created successfully',bulkAdd);
+  }
+
+
+  I am writing to correct a mistake in my previous email sent. It appears there was an error regarding the date of absence from work.
+
+The correct information is as follows:
+
+I am writing to inform you that I will not be able to come to work tomorrow, 31/8/2024.
+
+I apologize for any confusion this may have caused and appreciate your understanding. Please let me know if you have any further questions or need additional clarification.
+
+Thank you for your patience.
+
+Best regards,
+Tanvi Kawle
