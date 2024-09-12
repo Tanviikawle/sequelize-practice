@@ -35,23 +35,9 @@
   }
 
 
-    @Post('/bulk-upload')
+  @Post('/bulk-upload')
   @UseInterceptors(FileInterceptor('file'))
   bulkUpload(@UploadedFile() file: Express.Multer.File){
     const bulkAdd = this.resourceService.bulkUpload(file);
     return Response.ok('Resources are created successfully',bulkAdd);
   }
-
-
-  I am writing to correct a mistake in my previous email sent. It appears there was an error regarding the date of absence from work.
-
-The correct information is as follows:
-
-I am writing to inform you that I will not be able to come to work tomorrow, 31/8/2024.
-
-I apologize for any confusion this may have caused and appreciate your understanding. Please let me know if you have any further questions or need additional clarification.
-
-Thank you for your patience.
-
-Best regards,
-Tanvi Kawle
